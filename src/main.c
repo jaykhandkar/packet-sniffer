@@ -12,7 +12,7 @@ int main(int argc, char *argv[])
 
     bpf_u_int32 netp, maskp;					/* IP, netmask of our device */
 
-    char *interface = NULL;						/* device to sniff on */
+    char *interface = NULL;				        /* device to sniff on */
     char *filter_expr = NULL;					/* filter expression */
 
     while((c = getopt(argc, argv, "i:f:")) > 0)
@@ -27,8 +27,8 @@ int main(int argc, char *argv[])
             return 1;
         }
 
-    if (optind < argc) {
-        fprintf(stderr, "non-option argument: %s\n", argv[optind]);
+    for (int i = optind; i < argc; ++i) {
+        printf("non-option argument: %s", argv[i]);
     }
 
     if (interface == NULL) {					  /* interface not specified */
