@@ -28,7 +28,7 @@ int main(int argc, char *argv[])
         }
 
     for (int i = optind; i < argc; ++i) {
-        printf("non-option argument: %s", argv[i]);
+        printf("non-option argument: %s\n", argv[i]);
     }
 
     if (interface == NULL) {					  /* interface not specified */
