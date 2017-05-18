@@ -16,8 +16,7 @@ int main(int argc, char *argv[])
     char *filter_expr = NULL;					/* filter expression */
 
     while((c = getopt(argc, argv, "i:f:")) > 0)
-        switch(c)
-        {
+        switch(c) {
         case 'i':
             interface = optarg;
             break;
@@ -28,40 +27,33 @@ int main(int argc, char *argv[])
             return 1;
         }
 
-    if (optind < argc)
-    {
+    if (optind < argc) {
         fprintf(stderr, "non-option argument: %s\n", argv[optind]);
     }
 
-    if (interface == NULL) 					  /* interface not specified */
-    {
-        if ((interface = pcap_lookupdev(errbuf)) == NULL)
-        {
+    if (interface == NULL) {					  /* interface not specified */
+        if ((interface = pcap_lookupdev(errbuf)) == NULL) {
             fprintf(stderr, "couldnt find default device: %s\n", errbuf);
             return 1;
         }
     }
 
-    if (pcap_lookupnet(interface, &netp, &maskp, errbuf) < 0)
-    {
+    if (pcap_lookupnet(interface, &netp, &maskp, errbuf) < 0) {
         fprintf(stderr, "couldn't lookup netmask: %s\n", errbuf);
         return 1;
     }
 
-    if ((handle = pcap_open_live(interface, BUFSIZ, 1, 0, errbuf)) == NULL)
-    {
+    if ((handle = pcap_open_live(interface, BUFSIZ, 1, 0, errbuf)) == NULL) {
         fprintf(stderr, "couldn't open device %s for sniffing: %s\n", interface, errbuf);
         return 1;
     }
 
-    if (pcap_compile(handle, &fp, filter_expr, 0, netp) < 0)
-    {
+    if (pcap_compile(handle, &fp, filter_expr, 0, netp) < 0) {
         fprintf(stderr, "couldn't compile expression %s: %s\n", filter_expr, pcap_geterr(handle));
         return 1;
     }
 
-    if (pcap_setfilter(handle, &fp) < 0)
-    {
+    if (pcap_setfilter(handle, &fp) < 0) {
         fprintf(stderr, "couldn't apply expression %s: %s", filter_expr, pcap_geterr(handle));
         return 1;
     }
