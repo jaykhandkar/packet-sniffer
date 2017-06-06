@@ -1,7 +1,8 @@
 STD=gnu99
 LIBS=pcap
+CC=gcc
 
 sniffer: src/main.c src/sniffer.h
-	gcc -std=$(STD) -l$(LIBS) src/main.c src/pr_pack.c -o sniffer
+	$(CC) -std=$(STD) src/main.c src/pr_pack.c -o sniffer -l$(LIBS)
 clean:
 	rm sniffer
