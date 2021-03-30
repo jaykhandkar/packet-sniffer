@@ -1,3 +1,6 @@
+#ifndef SNIFFER
+#define SNIFFER
+
 #include <pcap.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
@@ -26,3 +29,5 @@ void print_udp(const u_char *packet);
 void print_icmp(const u_char *packet);
 
 int num_packets;
+
+#endif
