@@ -1,6 +1,7 @@
 #include "sniffer.h"
 
 pcap_t *handle;
+int num_packets;
 
 int main(int argc, char *argv[])
 {

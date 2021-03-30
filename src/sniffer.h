@@ -28,6 +28,4 @@ void print_tcp(const u_char *packet);
 void print_udp(const u_char *packet);
 void print_icmp(const u_char *packet);
 
-int num_packets;
-
 #endif

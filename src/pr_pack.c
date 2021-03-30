@@ -1,5 +1,7 @@
 #include "sniffer.h"
 
+extern int num_packets;
+
 void pr_pack(u_char *args, const struct pcap_pkthdr *hdr, const u_char *packet)
 {
     struct iphdr *ip = (struct iphdr *)(packet + SIZE_ETHHDR);
